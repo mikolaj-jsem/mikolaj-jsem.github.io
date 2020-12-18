@@ -30,6 +30,7 @@ var quotes = [
   "Goldman Sachs",
   "Wydział Nauk Ekonomicznych",
   "Teodor Nguyen",
+  "Jak się nie golisz, to masz wąs."
 ];
 
 // global variable for auto-refresh timeout
