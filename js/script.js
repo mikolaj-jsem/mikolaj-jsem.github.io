@@ -11,7 +11,7 @@ var quotes = [
   "Butelka Kleina",
   "Prezydent Kuba Trojgo",
   "Londyn",
-  "Kuba pisze list do Jackowskiego",
+  "Kuba pisze mail do Jackowskiego",
   "Bazyliszek",
   "Wierzba",
   "Sesja",
@@ -31,6 +31,8 @@ var quotes = [
   "Wydział Nauk Ekonomicznych",
   "Teodor Nguyen",
   "Jak się nie golisz, to masz wąs."
+  "Upić się jak szpadel."
+  "The Emirates"
 ];
 
 // global variable for auto-refresh timeout
