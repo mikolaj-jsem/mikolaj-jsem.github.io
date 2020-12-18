@@ -98,7 +98,7 @@ function nextCard() {
         printQuote();
         cardOnHand = true;
     } else {
-        printWarning();
+        printWarning("Halo. Nie dostaniesz nowej karty zanim nie podasz wyniku rundy!");
     }
 }
 
@@ -111,7 +111,7 @@ function failedCard(){
         clearInterval(timer);
         document.getElementById("score-value").innerHTML = String(score);
     } else {
-        printWarning();
+        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy. Weź nową kartę.");
     }
 }
 
@@ -124,13 +124,13 @@ function guessedCard(){
         clearInterval(timer);
         document.getElementById("score-value").innerHTML = String(score);
     } else {
-        printWarning();
+        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy. Weź nową kartę.");
     }
 }
 
-function printWarning() {
+function printWarning(warning_msg) {
     var quoteString = "";
-    quoteString += '<p>' + "No ej. W guziki się klika maksymalnie raz w jednej rundzie!" + "</p>";
+    quoteString += '<p>' + warning_msg + "</p>";
     quoteString += "</p>";
     document.getElementById("warning-box").innerHTML = quoteString;
 }
