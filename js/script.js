@@ -1,5 +1,5 @@
 var score = 0;
-var TIMELIMIT = 30;
+var TIMELIMIT = 60;
 var cardOnHand = false;
 var timeleft = 0;
 var timer;
@@ -111,7 +111,7 @@ function failedCard(){
         clearInterval(timer);
         document.getElementById("score-value").innerHTML = String(score);
     } else {
-        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy. Weź nową kartę.");
+        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy albo jeszcze nie zacząłeś. Weź nową kartę.");
     }
 }
 
@@ -124,7 +124,7 @@ function guessedCard(){
         clearInterval(timer);
         document.getElementById("score-value").innerHTML = String(score);
     } else {
-        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy. Weź nową kartę.");
+        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy albo jeszcze nie zacząłeś. Weź nową kartę.");
     }
 }
 
