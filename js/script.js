@@ -15,7 +15,7 @@ var quotes = [
   "Bazyliszek",
   "Wierzba",
   "Sesja",
-  "diagram ryby",
+  "Diagram ryby",
   "Szisza",
   "Koronaparty",
   "Honoratka",
