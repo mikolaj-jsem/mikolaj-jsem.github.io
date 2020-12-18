@@ -1,10 +1,8 @@
-//
-//
-// event listener to respond to "Show another quote" button clicks
-// when user clicks anywhere on the button, the "printQuote" function is called
-document
-  .getElementById("loadQuote")
-  .addEventListener("click", printQuote, false);
+var score = 0;
+var TIMELIMIT = 30;
+var cardOnHand = false;
+var timeleft = 0;
+var timer;
 
 var quotes = [
   "Wstęga Mobiusa",
@@ -30,34 +28,27 @@ var quotes = [
   "Goldman Sachs",
   "Wydział Nauk Ekonomicznych",
   "Teodor Nguyen",
-  "Jak się nie golisz, to masz wąs."
-  "Upić się jak szpadel."
-  "The Emirates"
+  "Jak się nie golisz, to masz wąs.",
+  "Upić się jak szpadel.",
+  "The Emirates",
 ];
 
-// global variable for auto-refresh timeout
-let nIntervID;
-
-// call the printQuote function to display a random quote in the browser
-printQuote();
 
 function getRandomQuote(numberOfQuotes) {
-  // generate a random number between 0 and "the number of quotes -1"
   var randomNumber = Math.floor(Math.random() * numberOfQuotes);
-  // return the corresponding array element
   return quotes[randomNumber];
 }
 
+function printString(string) {
+    var quoteString = "";
+    quoteString += '<p class="quote">' + string + "</p>";
+    quoteString += "</p>";
+    document.getElementById("quote-box").innerHTML = quoteString;
+}
+
 function printQuote() {
-  // create a variable by calling getRandomQuote and passing to it
-  // the number of quotes in the array
   var selectedQuote = getRandomQuote(quotes.length);
-  var quoteString = "";
-  quoteString += '<p class="quote">' + selectedQuote + "</p>";
-  quoteString += "</p>";
-  // assign quoteString to the innerHTML of the "quote-box" div
-  document.getElementById("quote-box").innerHTML = quoteString;
-  // call the function to randomly change the background color
+  printString(selectedQuote);
   changeBackgroundColor();
 }
 
@@ -77,9 +68,74 @@ function randomNumberForRGB() {
   return Math.floor(Math.random() * 256);
 }
 
-// function to auto-refresh the browser window every 10 seconds
-// with a new quote if the button has not been clicked
-function autoRefresh() {
-  clearInterval(nIntervID);
-  nIntervID = window.setInterval(printQuote, 10000);
+
+function updateTimer(timeleft_){
+    timeleft = timeleft_
+    let min = String(Math.floor(timeleft / 60)).padStart(1, '0');
+    let sec = String(timeleft % 60).padStart(2, '0');
+    document.getElementById("timer-value").innerHTML = min + ":" + sec;
+}
+
+function setTimer(timelimit){
+    timeleft = timelimit;
+
+    updateTimer(timeleft);
+    timer = setInterval(function () {
+        --timeleft;
+        if (timeleft < 0) {
+            printString("");
+            clearInterval(timer);
+        } else {
+            updateTimer(timeleft);
+        }
+    }, 1000);
+}
+
+function nextCard() {
+    if (cardOnHand == false) {
+        resetWarning();
+        setTimer(TIMELIMIT);
+        printQuote();
+        cardOnHand = true;
+    } else {
+        printWarning();
+    }
+}
+
+function failedCard(){
+    if (cardOnHand) {
+        resetWarning();
+        score -= 1;
+        cardOnHand = false;
+        updateTimer(0);
+        clearInterval(timer);
+        document.getElementById("score-value").innerHTML = String(score);
+    } else {
+        printWarning();
+    }
+}
+
+function guessedCard(){
+    if (cardOnHand) {
+        resetWarning();
+        score += 1;
+        cardOnHand = false;
+        updateTimer(0);
+        clearInterval(timer);
+        document.getElementById("score-value").innerHTML = String(score);
+    } else {
+        printWarning();
+    }
+}
+
+function printWarning() {
+    var quoteString = "";
+    quoteString += '<p>' + "No ej. W guziki się klika maksymalnie raz w jednej rundzie!" + "</p>";
+    quoteString += "</p>";
+    document.getElementById("warning-box").innerHTML = quoteString;
+}
+
+
+function resetWarning() {
+    document.getElementById("warning-box").innerHTML = "";
 }

@@ -11,12 +11,39 @@
 
 <body>
   <div class="container">
+
+
+  <!-- Action buttons -->
+    <div class="btn-group btn-group-block">
+      <br>
+      <button id="loadQuote" onclick="nextCard()">Daj mi nowe hasło!</button>
+      <button id="success" onclick="guessedCard()">Udało się!</button>
+      <button id="failure" onclick="failedCard()">Zjebałem :(</button>
+    </div>
+
+  <!-- Quote box -->
     <div id="quote-box">
 
     </div>
-    <button id="loadQuote">Losuj hasło!</button>
+
+  <!-- Stats -->
+    <div id="stats" class="columns bg-warning">
+        <div id="timer" class="column col-6">
+            Czas do końca Twojej rundy:
+            <span id="timer-value">0:00</span>
+        </div>
+        <div id="score" class="column col-6 bg-success">
+            Twoje punkty:
+            <span id="score-value">0</span>
+        </div>
+    </div>
+
+  <!-- Warning box -->
+    <div id="warning-box">
+    </div>
   </div>
   <script src="js/script.js"></script>
+
 </body>
 
 </html>
