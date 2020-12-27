@@ -16,9 +16,18 @@
   <!-- Action buttons -->
     <div class="btn-group btn-group-block">
       <br>
+      <div>Rysowacz - start rundy:</div>
+      <br>
       <button id="loadQuote" onclick="nextCard()">Daj mi nowe hasło!</button>
-      <button id="success" onclick="guessedCard()">Udało się!</button>
-      <button id="failure" onclick="failedCard()">Zjebałem :(</button>
+      <br><br>
+      <div>Rysowacz - koniec rundy:</div>
+      <br>
+      <button id="success" onclick="buttonAction(2, true)">Udało się!</button>
+      <button id="failure" onclick="buttonAction(-1, true)">Zjebałem :(</button>
+      <br><br>
+      <div>Zgadywacz:</div>
+      <br>
+      <button id="guessed" onclick="buttonAction(2, false)">Zgadłem</button>
     </div>
 
   <!-- Quote box -->
@@ -41,8 +50,10 @@
   <!-- Warning box -->
     <div id="warning-box">
     </div>
+
   </div>
   <script src="js/script.js"></script>
+
 
 </body>
 

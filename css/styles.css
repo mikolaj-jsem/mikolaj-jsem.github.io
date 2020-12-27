@@ -6,7 +6,7 @@ body {
 }
 #quote-box {
   position: absolute;
-  top: 20%;
+  top: 55%;
   left: 10%;
   right: 10%;
   width: 80%;
@@ -42,7 +42,7 @@ button:focus {
 #stats {
   position: absolute;
   display: inline-block;
-  top: 40%;
+  bottom: 10%;
   left: 10%;
   right: 10%;
   font-size: 1.5rem;

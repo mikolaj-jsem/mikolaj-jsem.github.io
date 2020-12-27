@@ -1,5 +1,5 @@
 var score = 0;
-var TIMELIMIT = 60;
+var TIMELIMIT = 120;
 var cardOnHand = false;
 var timeleft = 0;
 var timer;
@@ -102,29 +102,30 @@ function nextCard() {
     }
 }
 
-function failedCard(){
-    if (cardOnHand) {
-        resetWarning();
-        score -= 1;
-        cardOnHand = false;
-        updateTimer(0);
-        clearInterval(timer);
-        document.getElementById("score-value").innerHTML = String(score);
-    } else {
-        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy albo jeszcze nie zacząłeś. Weź nową kartę.");
-    }
+function updateScore(scoreAdded) {
+    score += scoreAdded;
+    document.getElementById("score-value").innerHTML = String(score);
 }
 
-function guessedCard(){
-    if (cardOnHand) {
-        resetWarning();
-        score += 1;
-        cardOnHand = false;
-        updateTimer(0);
-        clearInterval(timer);
-        document.getElementById("score-value").innerHTML = String(score);
-    } else {
-        printWarning("No ej. Już zadecydowałeś o wyniku tej rundy albo jeszcze nie zacząłeś. Weź nową kartę.");
+function buttonAction(scoreAdded, finishRound){
+    if (finishRound) {
+        if (cardOnHand) {
+            resetWarning();
+            cardOnHand = false;
+            updateTimer(0);
+            clearInterval(timer);
+            updateScore(scoreAdded);
+        } else {
+            printWarning("No ej. Już zadecydowałeś o wyniku tej rundy albo jeszcze nie zacząłeś. Weź nową kartę.");
+        }
+    }
+    else {
+        if (cardOnHand) {
+           printWarning("Jesteś pewien, że nie Ty teraz rysujesz? Podaj wynik swojej rundy.");
+        } else {
+           printWarning("Pamiętaj, że rozliczysz się w swoim sumieniu ze swoich oszustw.")
+           updateScore(scoreAdded);
+        }
     }
 }
 
@@ -134,7 +135,6 @@ function printWarning(warning_msg) {
     quoteString += "</p>";
     document.getElementById("warning-box").innerHTML = quoteString;
 }
-
 
 function resetWarning() {
     document.getElementById("warning-box").innerHTML = "";
