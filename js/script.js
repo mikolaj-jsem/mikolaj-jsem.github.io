@@ -3,6 +3,7 @@ var TIMELIMIT = 120;
 var cardOnHand = false;
 var timeleft = 0;
 var timer;
+var audio = new Audio('koniec.mp3');
 
 var quotes = [
   "Wstęga Mobiusa",
@@ -85,6 +86,9 @@ function setTimer(timelimit){
         if (timeleft < 0) {
             printString("");
             clearInterval(timer);
+            if (cardOnHand) {
+               audio.play();
+            }
         } else {
             updateTimer(timeleft);
         }
@@ -111,8 +115,8 @@ function buttonAction(scoreAdded, finishRound){
     if (finishRound) {
         if (cardOnHand) {
             resetWarning();
-            cardOnHand = false;
             updateTimer(0);
+            cardOnHand = false;
             clearInterval(timer);
             updateScore(scoreAdded);
         } else {
